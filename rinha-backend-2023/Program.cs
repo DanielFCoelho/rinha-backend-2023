@@ -1,9 +1,17 @@
+using rinha_backend_2023.Pessoas.Add.Services;
+using rinha_backend_2023.Pessoas.Endpoints.AddPessoas;
+using rinha_backend_2023.Pessoas.Endpoints.GetPessoas;
+using rinha_backend_2023.Pessoas.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IAddPessoasService, AddPessoasService>();
+builder.Services.AddScoped<IGetPessoasService, GetPessoasService>();
 
 var app = builder.Build();
 
@@ -16,24 +24,16 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateTime.Now.AddDays(index),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+app.MapPost("/pessoas", AddPessoas.AddPessoasAsync)
+    .Produces(StatusCodes.Status201Created)
+    .Produces(StatusCodes.Status422UnprocessableEntity)
+    .Produces(StatusCodes.Status400BadRequest);
+
+app.MapGet("/pessoas/{id}", GetPessoas.GetPessoaByIdAsync)
+    .Produces(StatusCodes.Status200OK)
+    .Produces(StatusCodes.Status404NotFound)
+    .Produces(StatusCodes.Status400BadRequest);
 
 app.Run();
 
