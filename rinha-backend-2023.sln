@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rinha-backend-2023", "rinha-backend-2023\rinha-backend-2023.csproj", "{8411B0CB-E346-44E8-98F3-57E27C6C417F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8411B0CB-E346-44E8-98F3-57E27C6C417F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8411B0CB-E346-44E8-98F3-57E27C6C417F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8411B0CB-E346-44E8-98F3-57E27C6C417F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8411B0CB-E346-44E8-98F3-57E27C6C417F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4F9EC17D-D2AF-4899-B4DD-F3DDA64B9083}
+	EndGlobalSection
+EndGlobal
