@@ -35,9 +35,12 @@ app.MapGet("/pessoas/{id}", GetPessoas.GetPessoaByIdAsync)
     .Produces(StatusCodes.Status404NotFound)
     .Produces(StatusCodes.Status400BadRequest);
 
-app.Run();
+app.MapGet("/pessoas", GetPessoas.GetPessoasByTermsAsync)
+    .Produces(StatusCodes.Status200OK)
+    .Produces(StatusCodes.Status404NotFound)
+    .Produces(StatusCodes.Status400BadRequest);
 
-internal record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
+app.MapGet("/contagem-pessoas", GetPessoas.GetTotalPessoasAsync)
+    .Produces(StatusCodes.Status200OK);
+
+app.Run();

@@ -7,6 +7,16 @@ public static class GetPessoas
 {
     public static async Task<IResult> GetPessoaByIdAsync(Guid id,  [FromServices] IGetPessoasService service)
     {
-        return null;
+        throw new NotImplementedException();
+    }
+
+    public static async Task<IResult> GetPessoasByTermsAsync([FromQuery] string t, [FromServices] IGetPessoasService service)
+    {
+        throw new NotImplementedException();
+    }
+
+    public static async Task<IResult> GetTotalPessoasAsync([FromServices] IGetPessoasService service)
+    {
+        throw new NotImplementedException();
     }
 }
