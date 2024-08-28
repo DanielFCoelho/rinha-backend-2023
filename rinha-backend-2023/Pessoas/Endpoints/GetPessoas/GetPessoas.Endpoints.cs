@@ -17,6 +17,7 @@ public static class GetPessoas
 
     public static async Task<IResult> GetTotalPessoasAsync([FromServices] IGetPessoasService service)
     {
-        throw new NotImplementedException();
+        var x = await service.GetCountPessoas();
+        return Results.Ok(x);
     }
 }

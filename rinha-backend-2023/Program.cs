@@ -1,7 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using rinha_backend_2023.Capabilities.Persistence;
 using rinha_backend_2023.Pessoas.Add.Services;
 using rinha_backend_2023.Pessoas.Endpoints.AddPessoas;
 using rinha_backend_2023.Pessoas.Endpoints.GetPessoas;
 using rinha_backend_2023.Pessoas.Services;
+using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,13 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IAddPessoasService, AddPessoasService>();
 builder.Services.AddScoped<IGetPessoasService, GetPessoasService>();
+
+builder.Services.AddDbContext<RinhaDBContext>(k =>
+    k.UseNpgsql("Host=localhost;Database=rinha-2023;Username=rinha;Password=eu1234",
+    k =>
+    {
+        k.EnableRetryOnFailure();
+    }));
 
 var app = builder.Build();
 
@@ -44,3 +54,5 @@ app.MapGet("/contagem-pessoas", GetPessoas.GetTotalPessoasAsync)
     .Produces(StatusCodes.Status200OK);
 
 app.Run();
+
+

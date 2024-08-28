@@ -6,14 +6,12 @@ services:
      # set shared memory limit when using docker-compose
     shm_size: 128mb
     # or set shared memory limit when deploy via swarm stack
-    #volumes:
-    #  - type: tmpfs
-    #    target: /dev/shm
-    #    tmpfs:
-    #      size: 134217728 # 128*2^20 bytes = 128Mb
     ports:
       - 5432:5432
     environment:
       POSTGRES_PASSWORD: eu1234
       POSTGRES_USER: rinha
       POSTGRES_DB: rinha-2023
+    volumes:
+      - ./Scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+    #command: bash -c "psql -U rinha -d rinha-2023 -f /Scripts/InitialScript.sql"

@@ -1,7 +1,9 @@
-﻿namespace rinha_backend_2023.Pessoas.Domain
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace rinha_backend_2023.Pessoas.Domain;
+
+public abstract class DomainBase
 {
-    public abstract class DomainBase
-    {
-        public Guid Id { get; set; }
-    }
+    [Key]
+    public Guid Id { get; set; }
 }

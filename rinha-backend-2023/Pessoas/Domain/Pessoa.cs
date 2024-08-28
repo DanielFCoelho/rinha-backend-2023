@@ -1,5 +1,8 @@
-﻿namespace rinha_backend_2023.Pessoas.Domain;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 
+namespace rinha_backend_2023.Pessoas.Domain;
+
+[Table("pessoas")]
 public class Pessoa : DomainBase
 {
     public string Apelido { get; set; }
