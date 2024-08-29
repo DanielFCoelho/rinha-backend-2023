@@ -7,7 +7,13 @@ public static class GetPessoas
 {
     public static async Task<IResult> GetPessoaByIdAsync(Guid id,  [FromServices] IGetPessoasService service)
     {
-        throw new NotImplementedException();
+        Domain.Pessoa? result = await service.GetPessoaById(id);
+
+        return result switch
+        {
+            null => Results.NotFound(),
+            _ => Results.Ok(result),
+        };
     }
 
     public static async Task<IResult> GetPessoasByTermsAsync([FromQuery] string t, [FromServices] IGetPessoasService service)

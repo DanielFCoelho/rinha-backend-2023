@@ -4,6 +4,11 @@ namespace rinha_backend_2023.Pessoas.Domain;
 
 public abstract class DomainBase
 {
+    protected DomainBase(Guid id)
+    {
+        this.id = id;
+    }
+
     [Key]
-    public Guid Id { get; set; }
+    public Guid id { get; protected set; }
 }

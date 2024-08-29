@@ -1,21 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using rinha_backend_2023.Pessoas.Add.Services;
+using rinha_backend_2023.Pessoas.Services;
 
 namespace rinha_backend_2023.Pessoas.Endpoints.AddPessoas
 {
     public static class AddPessoas
     {
-        public static async Task<IResult> AddPessoasAsync([FromBody] RequestAddPessoa request, [FromServices] IAddPessoasService service )
+        public static async Task<IResult> AddPessoasAsync([FromBody] RequestAddPessoa request, [FromServices] IAddPessoasService service)
         {
-            return null;
+            var result = await service.ExecuteAsync(request);
+
+            return result switch
+            {
+                null => Results.UnprocessableEntity(),
+                _ => Results.Created(new Uri($"https://localhost:7102/pessoas/{result.id}"), result)
+            };
         }
     }
 
-    public class RequestAddPessoa 
-    {
-        public string Apelido { get; set; }
-        public string Nome { get; set; }
-        public DateOnly Nascimento { get; set; }
-        public string[]? Stack { get; set; }
-    }
+    public record struct RequestAddPessoa(string? apelido, string? nome, DateOnly nascimento, List<string>? stack);
 }

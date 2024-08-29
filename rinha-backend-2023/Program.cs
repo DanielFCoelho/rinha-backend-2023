@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using rinha_backend_2023.Capabilities.Persistence;
-using rinha_backend_2023.Pessoas.Add.Services;
 using rinha_backend_2023.Pessoas.Endpoints.AddPessoas;
 using rinha_backend_2023.Pessoas.Endpoints.GetPessoas;
 using rinha_backend_2023.Pessoas.Services;
