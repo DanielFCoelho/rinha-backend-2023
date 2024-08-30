@@ -18,7 +18,8 @@ public static class GetPessoas
 
     public static async Task<IResult> GetPessoasByTermsAsync([FromQuery] string t, [FromServices] IGetPessoasService service)
     {
-        throw new NotImplementedException();
+        List<Domain.Pessoa> result = await service.GetPessoasByTerms(t);
+        return Results.Ok(result);
     }
 
     public static async Task<IResult> GetTotalPessoasAsync([FromServices] IGetPessoasService service)

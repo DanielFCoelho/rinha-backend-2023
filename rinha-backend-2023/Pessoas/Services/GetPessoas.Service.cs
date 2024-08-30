@@ -10,15 +10,17 @@ public class GetPessoasService(RinhaDBContext context) : IGetPessoasService
 
     public async Task<Pessoa?> GetPessoaById(Guid id) => await context.Pessoas.FindAsync(id);
 
-    public Task<IEnumerable<Pessoa>> GetPessoasByTerms(string terms)
+    public async Task<List<Pessoa>> GetPessoasByTerms(string terms)
     {
-        throw new NotImplementedException();
+        return context.Pessoas.AsEnumerable().Where(k => k.apelido.Contains(terms) ||
+            k.nome.Contains(terms) || (k.stack != null ? k.stack.Any(d => d.Contains(terms)) : false))
+            .ToList();
     }
 }
 
 public interface IGetPessoasService
 {
-    Task<IEnumerable<Domain.Pessoa>> GetPessoasByTerms(string terms);
+    Task<List<Domain.Pessoa>> GetPessoasByTerms(string terms);
     Task<Domain.Pessoa?> GetPessoaById(Guid id);
     Task<int> GetCountPessoas();
 }
